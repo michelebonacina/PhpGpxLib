@@ -1,18 +1,18 @@
 {
-    "name": ":vendor/:package_name",
+    "name": "michelebonacina/phpgpxlib",
     "type": "library",
     "description": ":package_description",
     "keywords": [
-        ":vendor",
-        ":package_name"
+        "michelebonacina",
+        "phpgpxlib"
     ],
-    "homepage": "https://github.com/:vendor/:package_name",
+    "homepage": "https://github.com/michelebonacina/phpgpxlib",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_website",
+            "name": "Michele Bonacina",
+            "email": "michele.bonacina@gmail.com",
+            "homepage": "https://github.com/michelebonacina",
             "role": "Developer"
         }
     ],
@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            ":vendor\\:package_name\\": "src"
+            "MicheleBonacina\\PhpGpxLib\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            ":vendor\\:package_name\\": "tests"
+            "MicheleBonacina\\PhpGpxLib\\": "tests"
         }
     },
     "scripts": {
