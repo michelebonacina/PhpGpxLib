@@ -10,7 +10,7 @@ use MicheleBonacina\PhpGpxLib\Point\GpxPoint;
 class GpxWaypoint extends GpxPoint
 {
 
-    public $name;       // waypoint name
+    private $name;      // waypoint name
 
     /**
      * Creates a new waypoint.
@@ -24,5 +24,15 @@ class GpxWaypoint extends GpxPoint
     {
         parent::__construct($latitude, $longitude, $altitude);
         $this->name = $name;
+    }
+
+    /**
+     * Returns waypoint name.
+     *
+     * @return string name
+     */
+    public function getName(): string
+    {
+        return $this->name;
     }
 }
