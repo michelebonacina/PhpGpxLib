@@ -11,6 +11,7 @@ class GpxWaypoint extends GpxPoint
 {
 
     private $name;      // waypoint name
+    private $symbol;    // waypoint symbol
 
     /**
      * Creates a new waypoint.
@@ -19,11 +20,13 @@ class GpxWaypoint extends GpxPoint
      * @param $longitude waypoint longitude
      * @param $altitude waypoint altitude
      * @param $name waypoint name
+     * @param $symbol waypoint symbol path
      */
-    function __construct($latitude, $longitude, $altitude, $name)
+    function __construct($latitude, $longitude, $altitude, $name, $symbol)
     {
         parent::__construct($latitude, $longitude, $altitude);
         $this->name = $name;
+        $this->symbol = $symbol;
     }
 
     /**

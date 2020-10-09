@@ -1,6 +1,6 @@
 <?php
 
-namespace MicheleBonacina\PhpGpxLib\Trackpoint;
+namespace MicheleBonacina\PhpGpxLib\Track;
 
 use MicheleBonacina\PhpGpxLib\Waypoint\GpxWaypoint;
 
@@ -28,5 +28,15 @@ class GpxTrack
     {
         // add waypoint to list
         array_push($this->waypoints, $waypoint);
+    }
+
+    /**
+     * Returns waypoints list.
+     *
+     * @return waypoints list
+     */
+    public function listWaypoints()
+    {
+        return $this->waypoints;
     }
 }

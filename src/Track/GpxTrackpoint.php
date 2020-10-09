@@ -1,6 +1,6 @@
 <?php
 
-namespace MicheleBonacina\PhpGpxLib\Trackpoint;
+namespace MicheleBonacina\PhpGpxLib\Track;
 
 use MicheleBonacina\PhpGpxLib\Point\GpxPoint;
 
