@@ -10,33 +10,33 @@ use MicheleBonacina\PhpGpxLib\Waypoint\GpxWaypoint;
 class GpxTrack
 {
 
-    private $waypoints = [];        // waypoints list
+    private $trackSegments = [];    // track segments list
 
     /**
-     * Creates a new gps track
+     * Creates a new gpx track.
      */
     public function __construct()
     {
     }
 
     /**
-     * Add a new waypoint to the waypoints list.
+     * Add a new segment to the track.
      *
-     * @param GpxWaypoint $waypoint waypoint to add
+     * @param GpxTrackSegment $trackSegment track segment to add
      */
-    public function addWaypoint(GpxWaypoint $waypoint)
+    public function addTrackSegment(GpxTrackSegment $trackSegment)
     {
-        // add waypoint to list
-        array_push($this->waypoints, $waypoint);
+        // add track segment to list
+        array_push($this->trackSegments, $trackSegment);
     }
 
     /**
-     * Returns waypoints list.
+     * Returns segments list.
      *
-     * @return waypoints list
+     * @return segments list
      */
-    public function listWaypoints()
+    public function listTrackSegments()
     {
-        return $this->waypoints;
+        return $this->trackSegments;
     }
 }

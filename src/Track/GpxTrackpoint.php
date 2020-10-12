@@ -5,9 +5,9 @@ namespace MicheleBonacina\PhpGpxLib\Track;
 use MicheleBonacina\PhpGpxLib\Point\GpxPoint;
 
 /**
- * GPX Trackpoint.
+ * GPX Track point.
  */
-class GpxTrackpoint extends GpxPoint
+class GpxTrackPoint extends GpxPoint
 {
 
     public $timestamp;      // trackpoint timestamp
