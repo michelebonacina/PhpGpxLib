@@ -35,7 +35,7 @@ class GpxPointUtility
         // calculate geodetic distance
         $geodeticDistance = $arc * GpxPointUtility::EARTH_RADIUS;
         // calculate distance
-        $distance = sqrt(pow($geodeticDistance, 2) + pow($this->ascent($point1, $point2), 2));
+        $distance = round(sqrt(pow($geodeticDistance, 2) + pow($this->ascent($point1, $point2), 2)), 2);
         // return disance
         return $distance;
     }
@@ -53,7 +53,7 @@ class GpxPointUtility
     public function ascent(GpxPoint $point1, GpxPoint $point2): float
     {
         // calculate ascent
-        $ascent = $point2->getAltitude() - $point1->getAltitude();
+        $ascent = round($point2->getAltitude() - $point1->getAltitude(), 1);
         // return ascent
         return $ascent;
     }
@@ -74,7 +74,7 @@ class GpxPointUtility
         // calculate ascent
         $rise = $this->ascent($point1, $point2);
         $run = sqrt(pow($this->distance($point1, $point2), 2) - pow($rise, 2));
-        $ascent = $rise / $run * 100;
+        $ascent = round($rise / $run * 100, 1);
         // return ascent
         return $ascent;
     }

@@ -25,7 +25,7 @@ abstract class GpxPoint
     {
         $this->latitude = $latitude;
         $this->longitude = $longitude;
-        $this->altitude = $altitude;
+        $this->altitude = round($altitude, 1);
     }
 
     /**

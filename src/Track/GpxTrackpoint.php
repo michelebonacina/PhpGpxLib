@@ -33,7 +33,7 @@ class GpxTrackPoint extends GpxPoint
         $this->timestamp = $timestamp;
         $this->heartRate = $heartRate;
         $this->cadence = $cadence;
-        $this->temperature = $temperature;
+        $this->temperature = round($temperature, 1);
     }
 
     /**
