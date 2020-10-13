@@ -2,6 +2,7 @@
 
 namespace MicheleBonacina\PhpGpxLib\Track;
 
+use DateTime;
 use MicheleBonacina\PhpGpxLib\Point\GpxPoint;
 
 /**
@@ -21,12 +22,12 @@ class GpxTrackPoint extends GpxPoint
      * @param float $latitude track point latitude
      * @param float $longitude track point longitude
      * @param float $altitude track point altitude
-     * @param string $timestamp track point timestamp
+     * @param DateTime $timestamp track point timestamp
      * @param int $heartRate track point heart rate
      * @param int $cadence track point cadence
      * @param float $temperature track point temperature
      */
-    function __construct(float $latitude, float $longitude, float $altitude, string $timestamp, int $heartRate, int $cadence, float $temperature)
+    function __construct(float $latitude, float $longitude, float $altitude, DateTime $timestamp, int $heartRate, int $cadence, float $temperature)
     {
         parent::__construct($latitude, $longitude, $altitude);
         $this->timestamp = $timestamp;
@@ -38,11 +39,10 @@ class GpxTrackPoint extends GpxPoint
     /**
      * Returns track point timestamp.
      *
-     * @return string timestamp
+     * @return DateTime timestamp
      */
-    public function getTimestamp(): string
+    public function getTimestamp(): DateTime
     {
-        // TODO change timestamp type
         return $this->timestamp;
     }
 

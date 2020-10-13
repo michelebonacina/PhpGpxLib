@@ -2,6 +2,7 @@
 
 namespace MicheleBonacina\PhpGpxLib;
 
+use DateTime;
 use Exception;
 use MicheleBonacina\PhpGpxLib\Track\GpxTrack;
 use MicheleBonacina\PhpGpxLib\Track\GpxTrackPoint;
@@ -30,13 +31,14 @@ class GpxFileUtility
         $gpxFile = new GpxFile();
         // load gpx xml file
         $gpxXml = simplexml_load_file($gpxFilePath);
+        // get garmin extensione namespace prefix
         $gpxNamespaces = $gpxXml->getNamespaces(TRUE);
-        $gpxNamespaceExtensions = null;
+        $gpxNamespaceExtensionsPrefix = null;
         foreach($gpxNamespaces as $gpxNamespace)
         {
             if (strpos($gpxNamespace, "TrackPointExtension"))
             {
-                $gpxNamespaceExtensions = array_search($gpxNamespace, $gpxNamespaces);
+                $gpxNamespaceExtensionsPrefix = array_search($gpxNamespace, $gpxNamespaces);
             }
         }
         // load waypoints
@@ -72,13 +74,13 @@ class GpxFileUtility
                                 $latitude = (float)$trackPoint->attributes()->lat;
                                 $longitude = (float)$trackPoint->attributes()->lon;
                                 $altitude = (float)$trackPoint->ele;
-                                $timestamp = (string)$trackPoint->time;
+                                $timestamp = new DateTime((string)$trackPoint->time);
                                 $heartRate = null;
                                 $cadence = null;
                                 $temperature = null;
                                 if (property_exists($trackPoint, "extensions"))
                                 {
-                                    $extensions = $trackPoint->extensions->children($gpxNamespaceExtensions, TRUE);
+                                    $extensions = $trackPoint->extensions->children($gpxNamespaceExtensionsPrefix, TRUE);
                                     $heartRate = (int) $extensions->TrackPointExtension->hr;
                                     $cadence = (int) $extensions->TrackPointExtension->cad;
                                     $temperature = (float) $extensions->TrackPointExtension->atemp;
