@@ -26,7 +26,7 @@ class GpxFile
      *
      * @param GpxWaypoint $waypoint new waypoint to add
      */
-    public function addWaypoint(GpxWaypoint $waypoint)
+    public function addWaypoint(GpxWaypoint $waypoint): void
     {
         // add waypoint to list
         array_push($this->waypoints, $waypoint);
@@ -37,7 +37,7 @@ class GpxFile
      *
      * @param GpxTrack $track new track to add
      */
-    public function addTrack(GpxTrack $track)
+    public function addTrack(GpxTrack $track): void
     {
         // add track to list
         array_push($this->tracks, $track);
@@ -46,9 +46,9 @@ class GpxFile
     /**
      * Returns waypoints list.
      *
-     * @return waypoints list
+     * @return array waypoints list
      */
-    public function listWaypoints()
+    public function listWaypoints(): array
     {
         return $this->waypoints;
     }
@@ -56,9 +56,9 @@ class GpxFile
     /**
      * Returns tracks list.
      *
-     * @return tracks list
+     * @return array tracks list
      */
-    public function listTracks()
+    public function listTracks(): array
     {
         return $this->tracks;
     }

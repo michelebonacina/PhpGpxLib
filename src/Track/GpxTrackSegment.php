@@ -22,7 +22,7 @@ class GpxTrackSegment
      *
      * @param GpxWaypoint $trackPointt track point to add
      */
-    public function addTrackPoint(GpxTrackPoint $trackPoint)
+    public function addTrackPoint(GpxTrackPoint $trackPoint): void
     {
         // add track point to list
         array_push($this->trackPoints, $trackPoint);
@@ -31,9 +31,9 @@ class GpxTrackSegment
     /**
      * Returns track points list.
      *
-     * @return track points list
+     * @return array track points list
      */
-    public function listTrackPoints()
+    public function listTrackPoints(): array
     {
         return $this->trackPoints;
     }

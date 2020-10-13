@@ -11,16 +11,19 @@ class GpxTrack
 {
 
     private $name;                  // track name
+    private $type;                  // track type
     private $trackSegments = [];    // track segments list
 
     /**
      * Creates a new gpx track.
      *
      * @param string $name track name
+     * @param string $type track type
      */
-    public function __construct(string $name)
+    public function __construct(string $name, string $type)
     {
         $this->name = $name;
+        $this->type = $type;
     }
 
     /**
@@ -31,6 +34,16 @@ class GpxTrack
     public function getName(): string
     {
         return $this->name;
+    }
+
+    /**
+     * Returns track type.
+     *
+     * @return string type
+     */
+    public function getType(): string
+    {
+        return $this->type;
     }
 
     /**
@@ -47,7 +60,7 @@ class GpxTrack
     /**
      * Returns segments list.
      *
-     * @return segments list
+     * @return array segments list
      */
     public function listTrackSegments(): array
     {

@@ -17,11 +17,11 @@ abstract class GpxPoint
     /**
      * Creates a new point.
      *
-     * @param $latitude point latitude
-     * @param $longitude point longitude
-     * @param $altitude point altitude
+     * @param float $latitude point latitude
+     * @param float $longitude point longitude
+     * @param float $altitude point altitude
      */
-    public function __construct($latitude, $longitude, $altitude)
+    public function __construct(float $latitude, float $longitude, float $altitude)
     {
         $this->latitude = $latitude;
         $this->longitude = $longitude;

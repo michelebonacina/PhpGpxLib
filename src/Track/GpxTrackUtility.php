@@ -2,7 +2,6 @@
 
 namespace MicheleBonacina\PhpGpxLib\Track;
 
-use Exception;
 use MicheleBonacina\PhpGpxLib\Point\GpxPointUtility;
 
 /**

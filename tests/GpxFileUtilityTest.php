@@ -13,7 +13,12 @@ class GpxFileUtilityTest extends \PHPUnit\Framework\TestCase
     {
         $utility = new GpxFileUtility();
         $gpx = $utility->loadTrackFromFile("C:\\Temp\\test2.gpx");
+        // test waypoints
         $this->assertTrue(sizeof($gpx->listWaypoints()) == 2);
-        $this->assertTrue(sizeof($gpx->listTracks()[0]->listTrackSegments()[0]->listTrackPoints()) == 207);
+        // test tracks
+        $track = $gpx->listTracks()[0];
+        $this->assertEquals("Gironzo", $track->getName(), "Wrong track name");
+        $this->assertEquals("road_biking", $track->getType(), "Wrong track type");
+        $this->assertTrue(sizeof($track->listTrackSegments()[0]->listTrackPoints()) == 207, "Wrong track points count");
     }
 }

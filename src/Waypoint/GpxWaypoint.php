@@ -16,13 +16,13 @@ class GpxWaypoint extends GpxPoint
     /**
      * Creates a new waypoint.
      *
-     * @param $latitude waypoint latitude
-     * @param $longitude waypoint longitude
-     * @param $altitude waypoint altitude
-     * @param $name waypoint name
-     * @param $symbol waypoint symbol path
+     * @param float $latitude waypoint latitude
+     * @param float $longitude waypoint longitude
+     * @param float $altitude waypoint altitude
+     * @param string $name waypoint name
+     * @param string $symbol waypoint symbol path
      */
-    function __construct($latitude, $longitude, $altitude, $name, $symbol)
+    function __construct(float $latitude, float $longitude, float $altitude, string $name, string $symbol)
     {
         parent::__construct($latitude, $longitude, $altitude);
         $this->name = $name;
@@ -37,5 +37,15 @@ class GpxWaypoint extends GpxPoint
     public function getName(): string
     {
         return $this->name;
+    }
+
+    /**
+     * Returns waypoint symbol.
+     *
+     * @return string symbol
+     */
+    public function getSymbol(): string
+    {
+        return $this->symbol;
     }
 }
