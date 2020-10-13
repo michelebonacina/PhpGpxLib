@@ -15,28 +15,27 @@ class GpxTrackUtilityTest extends TestCase
      *
      * @return array test case
      */
-    public function twoPointProvider(): array
+    public function durationProvider(): array
     {
         // load data from file
         $fileUtility = new GpxFileUtility();
-        $gpx = $fileUtility->loadTrackFromFile("C:\\Temp\\test2.gpx");
+        $gpx = $fileUtility->loadTrackFromFile("C:\\Temp\\test.gpx");
         // get track points
         $trackPoints = $gpx->listTracks()[0]->listTrackSegments()[0]->listTrackPoints();
         // return test data
         return [
-            [$trackPoints[0], $trackPoints[sizeof($trackPoints) - 1]]
+            [$trackPoints[0], $trackPoints[sizeof($trackPoints) - 1], 3278.0]
         ];
     }
 
     /**
      * Test distance function.
      *
-     * @dataProvider twoPointProvider
+     * @dataProvider durationProvider
      */
-    public function testDuration(GpxTrackPoint $point1, GpxTrackPoint $point2): void
+    public function testDuration(GpxTrackPoint $point1, GpxTrackPoint $point2, float $expected): void
     {
         $trackUtility = new GpxTrackUtility();
-        var_dump($trackUtility->duration($point1, $point2));
-        $this->assertTrue(TRUE);
+        $this->assertEquals($expected, $trackUtility->duration($point1, $point2), "Wrong point duration");
     }
 }

@@ -16,14 +16,14 @@ class GpxFileUtilityTest extends TestCase
     {
         // load data from file
         $fileUtility = new GpxFileUtility();
-        $gpx = $fileUtility->loadTrackFromFile("C:\\Temp\\test2.gpx");
+        $gpx = $fileUtility->loadTrackFromFile("C:\\Temp\\test.gpx");
         // test waypoints
-        $this->assertTrue(sizeof($gpx->listWaypoints()) == 2);
+        $this->assertEquals(3, sizeof($gpx->listWaypoints()), "Wrong waypoints count");
         // test tracks
         $track = $gpx->listTracks()[0];
-        $this->assertEquals("Gironzo", $track->getName(), "Wrong track name");
+        $this->assertEquals("Colle Gallo", $track->getName(), "Wrong track name");
         $this->assertEquals("road_biking", $track->getType(), "Wrong track type");
         $pointsCount = sizeof($track->listTrackSegments()[0]->listTrackPoints());
-        $this->assertTrue($pointsCount == 207, "Wrong track points count");
+        $this->assertEquals(3234, $pointsCount, "Wrong track points count");
     }
 }
