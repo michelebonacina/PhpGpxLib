@@ -27,6 +27,31 @@ class GpxTrackUtility extends GpxPointUtility
     }
 
     /**
+     * Calculates the total duration of the track.
+     * The duration is the total amount of timestamp difference of each point couple of the track in sequence.
+     *
+     * @param array $track track to compute duration
+     * @return float duration in seconds
+     */
+    public function trackDuration(GpxTrack $track): float
+    {
+        // get trackpoint
+        // TODO not only first segment
+        $points = $track->listTrackSegments()[0]->listTrackPoints();
+        // calculate duration
+        $duration = 0;
+        if (sizeof($points) > 1)
+        {
+            for ($i = 0; $i < sizeof($points) - 1; $i++)
+            {
+                $duration += $this->duration($points[$i],$points[$i+1]);
+            }
+        }
+        // return duration
+        return $duration;
+    }
+
+    /**
      * Calculates the difference between the temperature of two points.
      * The delta is calculated between the second and the first point.
      * If the delta i greater than zero the temperature increases,

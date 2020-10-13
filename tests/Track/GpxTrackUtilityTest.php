@@ -40,6 +40,35 @@ class GpxTrackUtilityTest extends TestCase
     }
 
     /**
+     * Data provider for testing duration.
+     *
+     * @return array test case
+     */
+    public function trackDurationProvider(): array
+    {
+        // load data from file
+        $fileUtility = new GpxFileUtility();
+        $gpx = $fileUtility->loadTrackFromFile("C:\\Temp\\test.gpx");
+        // get track points
+        $track = $gpx->listTracks()[0];
+        // return test data
+        return [
+            [$track, 3278.0]
+        ];
+    }
+
+    /**
+     * Test distance function.
+     *
+     * @dataProvider trackDurationProvider
+     */
+    public function testTrackDuration(GpxTrack $track, float $expected): void
+    {
+        $trackUtility = new GpxTrackUtility();
+        $this->assertEquals($expected, $trackUtility->trackDuration($track), "Wrong track duration");
+    }
+
+    /**
      * Data provider for testing delta temperature.
      *
      * @return array test case
