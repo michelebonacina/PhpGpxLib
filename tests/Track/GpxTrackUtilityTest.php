@@ -44,7 +44,7 @@ class GpxTrackUtilityTest extends TestCase
      *
      * @return array test case
      */
-    public function trackDurationProvider(): array
+    public function totalDurationProvider(): array
     {
         // load data from file
         $fileUtility = new GpxFileUtility();
@@ -60,12 +60,12 @@ class GpxTrackUtilityTest extends TestCase
     /**
      * Test distance function.
      *
-     * @dataProvider trackDurationProvider
+     * @dataProvider totalDurationProvider
      */
-    public function testTrackDuration(GpxTrack $track, float $expected): void
+    public function testTotalDuration(GpxTrack $track, float $expected): void
     {
         $trackUtility = new GpxTrackUtility();
-        $this->assertEquals($expected, $trackUtility->trackDuration($track), "Wrong track duration");
+        $this->assertEquals($expected, $trackUtility->totalDuration($track), "Wrong track duration");
     }
 
     /**

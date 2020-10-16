@@ -33,7 +33,7 @@ class GpxTrackUtility extends GpxPointUtility
      * @param array $track track to compute duration
      * @return float duration in seconds
      */
-    public function trackDuration(GpxTrack $track): float
+    public function totalDuration(GpxTrack $track): float
     {
         // get trackpoint
         // TODO not only first segment
