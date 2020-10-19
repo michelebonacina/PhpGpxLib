@@ -1,11 +1,11 @@
 # PhpGpxLib
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
+<!-- [![Latest Version on Packagist][ico-version]][link-packagist] -->
 [![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
-[![Quality Score][ico-code-quality]][link-code-quality]
-[![Total Downloads][ico-downloads]][link-downloads]
+<!-- [![Build Status][ico-travis]][link-travis] -->
+<!-- [![Coverage Status][ico-scrutinizer]][link-scrutinizer] -->
+<!-- [![Quality Score][ico-code-quality]][link-code-quality] -->
+<!-- [![Total Downloads][ico-downloads]][link-downloads] -->
 
 
 Another PHP library for [GPX files](https://en.wikipedia.org/wiki/GPS_Exchange_Format) management: import from standard file, manage data e get additional informations.
@@ -17,7 +17,7 @@ Another PHP library for [GPX files](https://en.wikipedia.org/wiki/GPS_Exchange_F
 ### File management
 
 - Import from Standard GPX file: waypoints, tracks, segments and trackpoints
-- Read same data form [Garmin Trackpoint Extension](https://www8.garmin.com/xmlschemas/TrackPointExtensionv1.xsd): temerature, heartrate and cadence
+- Read some data form [Garmin Trackpoint Extension](https://www8.garmin.com/xmlschemas/TrackPointExtensionv1.xsd): temerature, heartrate and cadence
 
 ### Data calculation
 - Two points operations

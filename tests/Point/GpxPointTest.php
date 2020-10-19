@@ -40,8 +40,7 @@ class GpxPointUtilityTest extends TestCase
      */
     public function testDistance(GpxPoint $point1, GpxPoint $point2, float $expected): void
     {
-        $pointUtility = new GpxPointUtility();
-        $this->assertEquals($expected, $pointUtility->distance($point1, $point2), "Wrong point distance");
+        $this->assertEquals($expected, $point1->distance($point2), "Wrong point distance");
     }
 
     /**
@@ -74,8 +73,7 @@ class GpxPointUtilityTest extends TestCase
      */
     public function testAscent(GpxPoint $point1, GpxPoint $point2, float $expected): void
     {
-        $pointUtility = new GpxPointUtility();
-        $this->assertEquals($expected, $pointUtility->ascent($point1, $point2), "Wrong point ascent");
+        $this->assertEquals($expected, $point1->ascent($point2), "Wrong point ascent");
     }
 
     /**
@@ -108,7 +106,6 @@ class GpxPointUtilityTest extends TestCase
      */
     public function testPercentageGrade(GpxPoint $point1, GpxPoint $point2, float $expected): void
     {
-        $pointUtility = new GpxPointUtility();
-        $this->assertEquals($expected, $pointUtility->percentageGrade($point1, $point2), "Wrong point percentage grade");
+        $this->assertEquals($expected, $point1->percentageGrade($point2), "Wrong point percentage grade");
     }
 }

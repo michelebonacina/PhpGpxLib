@@ -66,4 +66,22 @@ class GpxTrack
     {
         return $this->trackSegments;
     }
+
+    /**
+     * Calculates the total duration of the track.
+     * The total duration of the track is the sum of the duration of every single segment.
+     *
+     * @return float duration in seconds
+     */
+    public function duration(): float
+    {
+        // calculate duration
+        $duration = 0;
+        foreach($this->trackSegments as $segment)
+        {
+            $duration += $segment->duration();
+        }
+        // return duration
+        return $duration;
+    }
 }

@@ -7,7 +7,7 @@ namespace MicheleBonacina\PhpGpxLib\Track;
 use MicheleBonacina\PhpGpxLib\GpxFileUtility;
 use PHPUnit\Framework\TestCase;
 
-class GpxTrackUtilityTest extends TestCase
+class GpxTrackPointTest extends TestCase
 {
 
     /**
@@ -35,37 +35,7 @@ class GpxTrackUtilityTest extends TestCase
      */
     public function testDuration(GpxTrackPoint $point1, GpxTrackPoint $point2, float $expected): void
     {
-        $trackUtility = new GpxTrackUtility();
-        $this->assertEquals($expected, $trackUtility->duration($point1, $point2), "Wrong point duration");
-    }
-
-    /**
-     * Data provider for testing duration.
-     *
-     * @return array test case
-     */
-    public function totalDurationProvider(): array
-    {
-        // load data from file
-        $fileUtility = new GpxFileUtility();
-        $gpx = $fileUtility->loadTrackFromFile("C:\\Temp\\test.gpx");
-        // get track points
-        $track = $gpx->listTracks()[0];
-        // return test data
-        return [
-            [$track, 3278.0]
-        ];
-    }
-
-    /**
-     * Test distance function.
-     *
-     * @dataProvider totalDurationProvider
-     */
-    public function testTotalDuration(GpxTrack $track, float $expected): void
-    {
-        $trackUtility = new GpxTrackUtility();
-        $this->assertEquals($expected, $trackUtility->totalDuration($track), "Wrong track duration");
+        $this->assertEquals($expected, $point1->duration($point2), "Wrong point duration");
     }
 
     /**
@@ -93,7 +63,6 @@ class GpxTrackUtilityTest extends TestCase
      */
     public function testDeltaTemperature(GpxTrackPoint $point1, GpxTrackPoint $point2, float $expected): void
     {
-        $trackUtility = new GpxTrackUtility();
-        $this->assertEquals($expected, $trackUtility->deltaTemperature($point1, $point2), "Wrong delta temperature");
+        $this->assertEquals($expected, $point1->deltaTemperature($point2), "Wrong delta temperature");
     }
 }

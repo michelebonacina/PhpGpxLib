@@ -75,4 +75,36 @@ class GpxTrackPoint extends GpxPoint
     {
         return $this->temperature;
     }
+
+
+    /**
+     * Calculates the duration between this point and another given one.
+     * The duration is the time difference between two points in seconds.
+     *
+     * @param GpxPoint $point other point
+     * @return float duration in seconds
+     */
+    public function duration(GpxTrackPoint $point): float
+    {
+        // calculate duration
+        $duration = abs($point->getTimestamp()->getTimestamp() - $this->getTimestamp()->getTimestamp());
+        // return duration
+        return $duration;
+    }
+
+    /**
+     * Calculates the difference between the temperature with another give point.
+     * The delta is calculated between the other and this point.
+     * If the delta is greater than zero the temperature increases, otherwise decreases.
+     *
+     * @param GpxPoint $point other point
+     * @return float temperature difference
+     */
+    public function deltaTemperature(GpxTrackPoint $point): float
+    {
+        // calculate the delta temperature
+        $delta = $point->getTemperature() - $this->getTemperature();
+        // return delta
+        return $delta;
+    }
 }
