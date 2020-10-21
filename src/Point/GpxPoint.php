@@ -84,21 +84,21 @@ abstract class GpxPoint
         // calculate geodetic distance
         $geodeticDistance = $arc * GpxPoint::EARTH_RADIUS;
         // calculate distance
-        $distance = round(sqrt(pow($geodeticDistance, 2) + pow($this->ascent($point), 2)), 2);
+        $distance = round(sqrt(pow($geodeticDistance, 2) + pow($this->drop($point), 2)), 2);
         // return disance
         return $distance;
     }
 
     /**
-     * Calculates the ascent in meters between this point and anothergiven one.
-     * The ascent is the difference between the other point altitude and
+     * Calculates the heigth difference in meters between this point and another given one.
+     * The drop is the difference between the other point altitude and
      * the this point altitude. If greater then zero, the other point is
-     * higher than this one, the opposite if lower then zero.
+     * higher than this one (ascent), the opposite if lower then zero (descent).
      *
      * @param GpxPoint $point the other point
      * @return float ascent in meters
      */
-    public function ascent(GpxPoint $point): float
+    public function drop(GpxPoint $point): float
     {
         // calculate ascent
         $ascent = round($point->getAltitude() - $this->getAltitude(), 1);
@@ -110,8 +110,8 @@ abstract class GpxPoint
      * Calculates the perncentage grade between this point and another given one.
      * When horizontal and vertical distance between two points are the same
      * the inclination is 45 degrees and the percentage grade is 100%.
-     * If greater then zero, the other point is higher than this one, the opposite
-     * if lower then zero.
+     * If greater then zero, the other point is higher than this one (ascent), the opposite
+     * if lower then zero (descent).
      *
      * @param GpxPoint $point1 first point
      * @param GpxPoint $point2 second point
@@ -120,11 +120,10 @@ abstract class GpxPoint
     public function percentageGrade(GpxPoint $point): float
     {
         // calculate ascent
-        $rise = $this->ascent($point);
+        $rise = $this->drop($point);
         $run = sqrt(pow($this->distance($point), 2) - pow($rise, 2));
         $ascent = round($rise / $run * 100, 1);
         // return ascent
         return $ascent;
     }
-
 }

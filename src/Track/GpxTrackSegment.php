@@ -51,4 +51,5 @@ class GpxTrackSegment
         // return duration
         return $duration;
     }
+
 }

@@ -44,11 +44,11 @@ class GpxPointUtilityTest extends TestCase
     }
 
     /**
-     * Data provider for ascent testing.
+     * Data provider for drop testing.
      *
      * @return array test case
      */
-    public function ascentProvider(): array
+    public function dropProvider(): array
     {
         // load data from file
         $fileUtility = new GpxFileUtility();
@@ -69,11 +69,11 @@ class GpxPointUtilityTest extends TestCase
     /**
      * Test distance function.
      *
-     * @dataProvider ascentProvider
+     * @dataProvider dropProvider
      */
-    public function testAscent(GpxPoint $point1, GpxPoint $point2, float $expected): void
+    public function testDrop(GpxPoint $point1, GpxPoint $point2, float $expected): void
     {
-        $this->assertEquals($expected, $point1->ascent($point2), "Wrong point ascent");
+        $this->assertEquals($expected, $point1->drop($point2), "Wrong point drop");
     }
 
     /**
