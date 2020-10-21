@@ -35,6 +35,6 @@ class GpxTrackTest extends TestCase
      */
     public function testTotalDuration(GpxTrack $track, float $expected): void
     {
-        $this->assertEquals($expected, $track->duration($track), "Wrong track duration");
+        $this->assertEquals($expected, $track->duration(), "Wrong track duration");
     }
 }
