@@ -92,7 +92,7 @@ abstract class GpxPoint
     /**
      * Calculates the heigth difference in meters between this point and another given one.
      * The drop is the difference between the other point altitude and
-     * the this point altitude. If greater then zero, the other point is
+     * this point altitude. If greater then zero, the other point is
      * higher than this one (ascent), the opposite if lower then zero (descent).
      *
      * @param GpxPoint $point the other point

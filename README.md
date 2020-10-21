@@ -22,10 +22,10 @@ Another PHP library for [GPX files](https://en.wikipedia.org/wiki/GPS_Exchange_F
 ### Data calculation
 - Two points operations
     - Distance in meters, considering latitude, longitude and altitude difference 
-    - Ascent in meters
+    - Drop in meters
     - Percentage grade
     - Time difference in seconds
-    - Temterature difference
+    - Temperature difference
 - Track operations
     - Total duration in seconds
 
@@ -71,7 +71,7 @@ Each package has its own utility class.
 
     // load data from file
     $fileUtility = new GpxFileUtility();
-    $gpx = $fileUtility->loadTrackFromFile("example.gpx");      // GpxFile
+    $gpx = $fileUtility->loadTrackFromFile("example.gpx");  // GpxFile
     // get data
     $waypoints = $gpx->listWaypoints();                     // array of GpxWaypoint
     $tracks = $gpx->listTracks();                           // array of GpxTrack
