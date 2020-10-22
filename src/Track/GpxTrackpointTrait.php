@@ -2,9 +2,6 @@
 
 namespace MicheleBonacina\PhpGpxLib\Track;
 
-use DateTime;
-use MicheleBonacina\PhpGpxLib\Point\GpxPoint;
-
 /**
  * GPX Track point.
  */
