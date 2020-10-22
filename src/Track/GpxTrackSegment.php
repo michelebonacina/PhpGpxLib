@@ -47,9 +47,50 @@ class GpxTrackSegment
     public function duration(): float
     {
         // calculate duration
-        $duration = $this->trackPoints[sizeof($this->trackPoints)-1]->getTimestamp()->getTimestamp() - $this->trackPoints[0]->getTimestamp()->getTimestamp();
+        $duration = $this->trackPoints[sizeof($this->trackPoints) - 1]->getTimestamp()->getTimestamp() - $this->trackPoints[0]->getTimestamp()->getTimestamp();
         // return duration
         return $duration;
     }
 
+    /**
+     * Calculates the total ascent of the segment.
+     * The total ascent is the sum of the drop between each point and its next point only if
+     * this drop is greater than zero.
+     *
+     * @return float total ascent
+     */
+    public function totalAscent(): float
+    {
+        // calculate total ascent
+        $totalAscent = 0;
+        for ($i = 0; $i < sizeof($this->trackPoints) - 1; $i++) {
+            if ($i > 0) {
+                $drop = $this->trackPoints[$i - 1]->drop($this->trackPoints[$i]);
+                $totalAscent += $drop > 0 ? $drop : 0;
+            }
+        }
+        // return total ascent
+        return round($totalAscent, 2);
+    }
+
+    /**
+     * Calculates the total descent of the segment.
+     * The total descent is the sum of the drop between each point and its next point only if
+     * this drop is lower than zero.
+     *
+     * @return float total descent
+     */
+    public function totalDescent(): float
+    {
+        // calculate total descent
+        $totalDescent = 0;
+        for ($i = 0; $i < sizeof($this->trackPoints) - 1; $i++) {
+            if ($i > 0) {
+                $drop = $this->trackPoints[$i - 1]->drop($this->trackPoints[$i]);
+                $totalDescent += $drop < 0 ? $drop : 0;
+            }
+        }
+        // return total descent
+        return round(-$totalDescent, 2);
+    }
 }

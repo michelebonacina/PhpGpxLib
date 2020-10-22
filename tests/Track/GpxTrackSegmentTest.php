@@ -7,7 +7,7 @@ namespace MicheleBonacina\PhpGpxLib\Track;
 use MicheleBonacina\PhpGpxLib\GpxFileUtility;
 use PHPUnit\Framework\TestCase;
 
-class GpxTrackTest extends TestCase
+class GpxTrackSegmentTest extends TestCase
 {
 
     /**
@@ -15,27 +15,28 @@ class GpxTrackTest extends TestCase
      *
      * @return array test case
      */
-    public function totalDurationProvider(): array
+    public function durationProvider(): array
     {
         // load data from file
         $fileUtility = new GpxFileUtility();
         $gpx = $fileUtility->loadTrackFromFile("C:\\Temp\\test.gpx");
         // get track points
         $track = $gpx->listTracks()[0];
+        $segment = $track->listTrackSegments()[0];
         // return test data
         return [
-            [$track, 3278.0]
+            [$segment, 3278.0]
         ];
     }
 
     /**
      * Test distance function.
      *
-     * @dataProvider totalDurationProvider
+     * @dataProvider durationProvider
      */
-    public function testTotalDuration(GpxTrack $track, float $expected): void
+    public function testDuration(GpxTrackSegment $trackSegment, float $expected): void
     {
-        $this->assertEquals($expected, $track->duration(), "Wrong track duration");
+        $this->assertEquals($expected, $trackSegment->duration(), "Wrong segment duration");
     }
 
     /**
@@ -50,9 +51,10 @@ class GpxTrackTest extends TestCase
         $gpx = $fileUtility->loadTrackFromFile("C:\\Temp\\test.gpx");
         // get track points
         $track = $gpx->listTracks()[0];
+        $segment = $track->listTrackSegments()[0];
         // return test data
         return [
-            [$track, 561.4]
+            [$segment, 561.4]
         ];
     }
 
@@ -61,9 +63,9 @@ class GpxTrackTest extends TestCase
      *
      * @dataProvider totalAscentProvider
      */
-    public function testTotalAscent(GpxTrack $track, float $expected): void
+    public function testTotalAscent(GpxTrackSegment $trackSegment, float $expected): void
     {
-        $this->assertEquals($expected, $track->totalAscent(), "Wrong track total ascent");
+        $this->assertEquals($expected, $trackSegment->totalAscent(), "Wrong segment total ascent");
     }
 
     /**
@@ -78,9 +80,10 @@ class GpxTrackTest extends TestCase
         $gpx = $fileUtility->loadTrackFromFile("C:\\Temp\\test.gpx");
         // get track points
         $track = $gpx->listTracks()[0];
+        $segment = $track->listTrackSegments()[0];
         // return test data
         return [
-            [$track, 77.2]
+            [$segment, 77.2]
         ];
     }
 
@@ -89,8 +92,8 @@ class GpxTrackTest extends TestCase
      *
      * @dataProvider totalDescentProvider
      */
-    public function testTotalDescent(GpxTrack $track, float $expected): void
+    public function testTotalDescent(GpxTrackSegment $trackSegment, float $expected): void
     {
-        $this->assertEquals($expected, $track->totalDescent(), "Wrong track total descent");
+        $this->assertEquals($expected, $trackSegment->totalDescent(), "Wrong segment total descent");
     }
 }
