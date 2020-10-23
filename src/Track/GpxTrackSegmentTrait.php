@@ -17,7 +17,8 @@ trait GpxTrackSegmentTrait
     public function duration(): float
     {
         // calculate duration
-        $duration = $this->trackPoints[sizeof($this->trackPoints) - 1]->getTimestamp()->getTimestamp() - $this->trackPoints[0]->getTimestamp()->getTimestamp();
+        $trackPointList = $this->listTrackPoints();
+        $duration = $trackPointList[sizeof($trackPointList) - 1]->getTime()->getTimestamp() - $trackPointList[0]->getTime()->getTimestamp();
         // return duration
         return $duration;
     }
@@ -33,9 +34,10 @@ trait GpxTrackSegmentTrait
     {
         // calculate total ascent
         $totalAscent = 0;
-        for ($i = 0; $i < sizeof($this->trackPoints) - 1; $i++) {
+        $trackPointList = $this->listTrackPoints();
+        for ($i = 0; $i < sizeof($trackPointList) - 1; $i++) {
             if ($i > 0) {
-                $drop = $this->trackPoints[$i - 1]->drop($this->trackPoints[$i]);
+                $drop = $trackPointList[$i - 1]->drop($trackPointList[$i]);
                 $totalAscent += $drop > 0 ? $drop : 0;
             }
         }
@@ -54,9 +56,10 @@ trait GpxTrackSegmentTrait
     {
         // calculate total descent
         $totalDescent = 0;
-        for ($i = 0; $i < sizeof($this->trackPoints) - 1; $i++) {
+        $trackPointList = $this->listTrackPoints();
+        for ($i = 0; $i < sizeof($trackPointList) - 1; $i++) {
             if ($i > 0) {
-                $drop = $this->trackPoints[$i - 1]->drop($this->trackPoints[$i]);
+                $drop = $trackPointList[$i - 1]->drop($trackPointList[$i]);
                 $totalDescent += $drop < 0 ? $drop : 0;
             }
         }

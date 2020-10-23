@@ -7,7 +7,7 @@ use MicheleBonacina\PhpGpxLib\Point\GpxPoint;
 /**
  * GPX Waypoint.
  */
-class GpxWaypoint extends GpxPoint
+class GpxWaypoint extends GpxPoint implements GpxWaypointTraitNeeds
 {
 
     private $name;      // waypoint name

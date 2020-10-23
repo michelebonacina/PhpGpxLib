@@ -24,10 +24,10 @@ trait GpxPointTrait
     public function distance($point): float
     {
         // convert from degreese to radiant
-        $radLatitude1 = deg2rad($this->latitude);
-        $radLongitude1 = deg2rad($this->longitude);
-        $radLatitude2 = deg2rad($point->latitude);
-        $radLongitude2 = deg2rad($point->longitude);
+        $radLatitude1 = deg2rad($this->getLatitude());
+        $radLongitude1 = deg2rad($this->getLongitude());
+        $radLatitude2 = deg2rad($point->getLatitude());
+        $radLongitude2 = deg2rad($point->getLongitude());
         // calculate angle between the points
         $angle = abs($radLongitude2 - $radLongitude1);
         // calculate arc length
@@ -53,7 +53,7 @@ trait GpxPointTrait
     public function drop($point): float
     {
         // calculate ascent
-        $ascent = round($point->altitude - $this->altitude, 1);
+        $ascent = round($point->getAltitude() - $this->getAltitude(), 1);
         // return ascent
         return $ascent;
     }

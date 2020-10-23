@@ -18,7 +18,7 @@ trait GpxTrackTrait
     {
         // calculate duration
         $duration = 0;
-        foreach($this->trackSegments as $segment)
+        foreach($this->listTrackSegments() as $segment)
         {
             $duration += $segment->duration();
         }
@@ -36,7 +36,7 @@ trait GpxTrackTrait
     {
         // calculate total ascent
         $totalAscent = 0;
-        foreach ($this->trackSegments as $trackSegment) {
+        foreach ($this->listTrackSegments() as $trackSegment) {
             $totalAscent += $trackSegment->totalAscent();
         }
         // return total ascent
@@ -53,7 +53,7 @@ trait GpxTrackTrait
     {
         // calculate total descent
         $totalDescent = 0;
-        foreach ($this->trackSegments as $trackSegment) {
+        foreach ($this->listTrackSegments() as $trackSegment) {
             $totalDescent += $trackSegment->totalDescent();
         }
         // return total descent

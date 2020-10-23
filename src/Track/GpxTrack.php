@@ -5,7 +5,7 @@ namespace MicheleBonacina\PhpGpxLib\Track;
 /**
  * GPX Track.
  */
-class GpxTrack
+class GpxTrack implements GpxTrackTraitNeeds
 {
 
     use GpxTrackTrait;

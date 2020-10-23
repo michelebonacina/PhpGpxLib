@@ -10,6 +10,8 @@
 
 Another PHP library for [GPX files](https://en.wikipedia.org/wiki/GPS_Exchange_Format) management: import from standard file, manage data e get additional informations.
 
+This library is structured to be used inside a persistence framework, like Laravel Eloquent. See Laravel section for details.
+
 **This library is still in develompment!!**
 
 ## Feature
@@ -17,7 +19,7 @@ Another PHP library for [GPX files](https://en.wikipedia.org/wiki/GPS_Exchange_F
 ### File management
 
 - Import from Standard GPX file: waypoints, tracks, segments and trackpoints
-- Read some data form [Garmin Trackpoint Extension](https://www8.garmin.com/xmlschemas/TrackPointExtensionv1.xsd): temerature, heartrate and cadence
+- Read some data form [Garmin Trackpoint Extension](https://www8.garmin.com/xmlschemas/TrackPointExtensionv1.xsd): temperature, heartrate and cadence
 
 ### Data calculation
 - Two points operations
@@ -57,11 +59,9 @@ Every file is mapped over a **GpxFile** which contains a list of **GpxWaypoint**
 
 ### Utility classes
 
+**GpxFileUtility** is used for GPX file manipulation, like loading data from file.
+
 ## Usage
-
-Each package has its own utility class.
-
-**GpxPointUtility** calculates the distance between two points, the ascent
 
 ### Load from GPX file and gets data
 ``` php
@@ -79,6 +79,98 @@ Each package has its own utility class.
     $trackPoints = $trackSegments[0]->listTrackPoints();    // array of GpxTrackPoints
 
 ```
+
+## Laravel integration
+The classes are structured to be use with a persistent framework, like Laravel Eloquent.
+
+In Eloquent developers must define a Migration class, for describing database table structure, and a model class, for managing persistent operation.
+
+### Laravel standard implementation
+As example consider in Laravel a standard implementation of the TrackPoint class.
+
+Migration Class
+``` php
+class CreateTrackPointsTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('track_points', function (Blueprint $table) {
+            $table->id();
+            $table->decimal('latitude', 32, 28);
+            $table->decimal('longitude', 32, 28);
+            $table->integer('altitude')->nullable();
+            $table->dateTimeTz('time', 0)->nullable();
+            $table->decimal('temperature', 6, 2)->nullable();
+            $table->integer('heart_rate')->nullable();
+            $table->integer('cadence')->nullable();
+            $table->bigInteger('track_segment_id')->unsigned();
+            $table->foreign('track_segment_id')->on('track_segments')->references('id')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('track_points');
+    }
+}
+```
+
+Model Class
+``` php
+class TrackPoint extends Model
+{
+    public function trackSegment()
+    {
+        return $this->belongsTo(TrackSegment::class);
+    }
+}
+```
+
+### Laravel PhpGpxLib integration
+
+It's useful to reuse *GpxTrackPoint* functionalities inside the Laravel *TrackPoint* model class without rewrite them, but GpxTrackPoint doesn't extends Eloquent Model class.
+
+The solution is to use *GpxTrackPointTrait* in TrackPoint class which has also to implement the *GpxTrackPointTraitNeeds* interface, like this.
+
+``` php
+class TrackPoint extends Model implements GpxTrackPointTraitNeeds
+{
+    use GpxTrackPointTrait;
+
+    public function trackSegment()
+    {
+        return $this->belongsTo(TrackSegment::class);
+    }
+
+    public function getLatitude(): float
+    {
+        return $this->latitude;
+    }
+
+    public function getLongitude(): float
+    {
+        return $this->longitude;
+    }
+
+    public function getAltitude(): float
+    {
+        return $this->altitude;
+    }
+
+    public function getTime(): DateTime
+    {
+        return new DateTime($this->time);
+    }
+
+    public function getTemperature(): float
+    {
+        return $this->temperature;
+    }
+}
+```
+
+Simply using *GpxTrackPointTrait* gives to *TrackPoint* Laravel class the possibility to call *duration()*, *deltaTemperature()*, *distance()*, *drop()*, *percentageGrade()*, etc methods, without implementing them. But this methods needs some other methods of *GpxTrackPoint*, so they are declared inside the *GpxTrackPointTraitNeeds* interface. Laravel *TrackPoint* class must to implements this interface and all the methods in it declared (*getLatitude()*, *getLongitude()*, *getAltitude()*, *getTime()* and *getTemperature()*, etc), according with the Laravel *TrackPoint* definition.
 
 ## Change log
 

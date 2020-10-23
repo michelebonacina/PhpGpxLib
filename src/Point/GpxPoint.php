@@ -7,7 +7,7 @@ namespace MicheleBonacina\PhpGpxLib\Point;
  * This is the base point for other points type.
  * It can't be used standalone.
  */
-abstract class GpxPoint
+abstract class GpxPoint implements GpxPointTraitNeeds
 {
 
     use GpxPointTrait;

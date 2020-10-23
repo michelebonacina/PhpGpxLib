@@ -5,7 +5,7 @@ namespace MicheleBonacina\PhpGpxLib\Track;
 /**
  * GPX Track segment.
  */
-class GpxTrackSegment
+class GpxTrackSegment implements GpxTrackSegmentTraitNeeds
 {
 
     use GpxTrackSegmentTrait;
@@ -38,19 +38,5 @@ class GpxTrackSegment
     public function listTrackPoints(): array
     {
         return $this->trackPoints;
-    }
-
-    /**
-     * Calculates the total duration of the segment.
-     * The total duration of the segment is the difference between the first and the last point of the segment.
-     *
-     * @return float duration in seconds
-     */
-    public function duration(): float
-    {
-        // calculate duration
-        $duration = $this->trackPoints[sizeof($this->trackPoints) - 1]->getTimestamp()->getTimestamp() - $this->trackPoints[0]->getTimestamp()->getTimestamp();
-        // return duration
-        return $duration;
     }
 }

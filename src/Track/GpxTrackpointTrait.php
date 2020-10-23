@@ -2,11 +2,15 @@
 
 namespace MicheleBonacina\PhpGpxLib\Track;
 
+use MicheleBonacina\PhpGpxLib\Point\GpxPointTrait;
+
 /**
  * GPX Track point.
  */
 trait GpxTrackPointTrait
 {
+
+    use GpxPointTrait;
 
     /**
      * Calculates the duration between this point and another given one.
@@ -18,7 +22,7 @@ trait GpxTrackPointTrait
     public function duration($point): float
     {
         // calculate duration
-        $duration = abs($point->timestamp->getTimestamp() - $this->timestamp->getTimestamp());
+        $duration = abs($point->getTime()->getTimestamp() - $this->getTime()->getTimestamp());
         // return duration
         return $duration;
     }
@@ -34,7 +38,7 @@ trait GpxTrackPointTrait
     public function deltaTemperature($point): float
     {
         // calculate the delta temperature
-        $delta = $point->temperature - $this->temperature;
+        $delta = $point->getTemperature() - $this->getTemperature();
         // return delta
         return $delta;
     }
